@@ -1,0 +1,38 @@
+# CRIANDO BANCO DE DADOS
+CREATE DATABASE BANCO;
+
+# USANDO BANCO DE DADOS
+USE BANCO;
+
+#--------------------------------------------------------------------------
+
+# CRIANDO TABELAS
+
+# CRIANDO A TABELA CLIENTE
+CREATE TABLE cliente(
+	cli_cpf INT PRIMARY KEY, # NOT NULL É PADRÃO DA PK
+	cli_nome VARCHAR(255) NOT NULL,
+	cli_rua VARCHAR(255) NOT NULL,
+	cli_numero INT NOT NULL,
+	cli_bairro VARCHAR(255) NOT NULL,
+	cli_telefone VARCHAR(11) NOT NULL
+);
+
+# CRIANDO A TABELA PEDIDO
+CREATE TABLE pedido(
+	ped_numero INT PRIMARY KEY,
+	ped_data DATE
+);
+
+# CRIANDO A TABELA PRODUTO
+CREATE TABLE produto(
+	prod_codigo INT PRIMARY KEY,
+	prod_nome VARCHAR(255),
+	prod_preco FLOAT
+);
+
+#CRIANDO A TABELA CATEGORIA
+CREATE TABLE categoria(
+	prod_catcodigo INT PRIMARY KEY AUTO_INCREMENT,
+	prod_catnome VARCHAR(255) NOT NULL UNIQUE
+);
