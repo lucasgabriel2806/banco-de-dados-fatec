@@ -11,9 +11,11 @@ CREATE TABLE cliente(
 	cli_cep VARCHAR(8) NOT NULL,
 	cli_cidade VARCHAR(50) NOT NULL,
 	cli_estado VARCHAR(50) NOT NULL,
-	cli_telefones VARCHAR(11) NOT NULL /** Mudar para multivalorado */
+	cli_telefones VARCHAR(11) NOT NULL, /** Mudar para multivalorado */
 	cli_email VARCHAR(100) NOT NULL
 );
+
+SELECT * FROM cliente;
 
 CREATE TABLE equipamento(
 	equ_codigo INT PRIMARY KEY AUTO_INCREMENT,
