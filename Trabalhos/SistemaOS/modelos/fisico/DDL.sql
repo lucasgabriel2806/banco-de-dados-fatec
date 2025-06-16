@@ -2,17 +2,26 @@ CREATE DATABASE ordens_servico;
 
 USE ordens_servico;
 
+SHOW TABLES;
+
+DROP TABLE equipamento;
+
 CREATE TABLE cliente(
 	cli_codigo INT PRIMARY KEY AUTO_INCREMENT,
 	cli_nome VARCHAR(255) NOT NULL,
 	cli_logradouro VARCHAR(255) NOT NULL,
 	cli_numero INT NOT NULL,
 	cli_bairro VARCHAR(255) NOT NULL,
-	cli_cep VARCHAR(8) NOT NULL,
-	cli_cidade VARCHAR(50) NOT NULL,
-	cli_estado VARCHAR(50) NOT NULL,
-	cli_telefones VARCHAR(11) NOT NULL, /** Mudar para multivalorado */
+	cli_cep INT NOT NULL,
+	cli_cidade VARCHAR(255) NOT NULL,
+	cli_estado VARCHAR(255) NOT NULL,
+	fk_cli_telefones VARCHAR(11) NOT NULL, /** Mudar para multivalorado */
 	cli_email VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE cli_telefones (
+
+
 );
 
 SELECT * FROM cliente;
