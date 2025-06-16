@@ -9,17 +9,16 @@ USE ordens_servico;
 SHOW TABLES;
 
 /** CREATE TABLE **/
-
 CREATE TABLE cliente(
 	cli_codigo INT PRIMARY KEY AUTO_INCREMENT,
 	cli_nome VARCHAR(255) NOT NULL,
 	cli_logradouro VARCHAR(255) NOT NULL,
 	cli_numero INT NOT NULL,
 	cli_bairro VARCHAR(255) NOT NULL,
-	cli_cep INT NOT NULL,
+	cli_cep CHAR(8) NOT NULL,
 	cli_cidade VARCHAR(255) NOT NULL,
 	cli_estado VARCHAR(255) NOT NULL,
-	fk_cli_telefones INT NOT NULL,
+	-- fk_cli_telefones int NOT NULL,
 	cli_email VARCHAR(100) NOT NULL
 );
 
@@ -29,6 +28,8 @@ CREATE TABLE marca(
 	mar_descricao VARCHAR(255) NOT NULL
 );
 
+DROP TABLE equipamento;
+
 CREATE TABLE equipamento(
 	equ_codigo INT PRIMARY KEY AUTO_INCREMENT,
 	equ_descricao VARCHAR(255) NOT NULL,
@@ -36,8 +37,16 @@ CREATE TABLE equipamento(
 	equ_ano_fabricacao YEAR NOT NULL,
 	equ_detalhes_configuracoes VARCHAR(255) NOT NULL,
 	equ_observacoes VARCHAR(255) NOT NULL,
-	FOREIGN KEY (fk_cli_codigo) REFERENCES cliente (cli_codigo)
+	fk_cli_codigo INT NOT NULL
+	-- FOREIGN KEY (fk_cli_codigo) REFERENCES cliente (cli_codigo)
 );
+
+ALTER TABLE equipamento 
+ADD CONSTRAINT fk_equ_cli
+FOREIGN KEY (fk_cli_codigo)
+REFERENCES cliente(cli_codigo);
+
+SELECT * FROM equipamento;
 
 CREATE TABLE equ_mar(
 	fk_equ_codigo INT NOT NULL,
@@ -55,7 +64,7 @@ CREATE TABLE cli_equ(
 
 CREATE TABLE cli_telefones (
         cli_telefone_codigo INT PRIMARY KEY AUTO_INCREMENT,
-        cli_telefone INT,
+        cli_telefone CHAR(11),
         cli_codigo INT,
         FOREIGN KEY (cli_codigo) REFERENCES cliente(cli_codigo)
 );
@@ -90,10 +99,5 @@ CREATE TABLE ordem_de_servico(
 	ord_data_fechamento DATETIME NOT NULL
 );
 
-/**
 
-ALTER TABLE cliente 
-ADD CONSTRAINT fk_telefones
-FOREIGN KEY (fk_cli_telefones) 
-REFERENCES cli_telefones(cli_telefones_codigo);
 
